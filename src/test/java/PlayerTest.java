@@ -4,6 +4,6 @@ public class PlayerTest {
 
     @Test
     public void foldACorner(){
-        
+
     }
 }
