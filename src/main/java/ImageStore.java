@@ -21,7 +21,7 @@ public class ImageStore {
         //  to get references to the Image objects.
 
         ImageStore.card_back_image = new Image(
-                "playing_cards_images/card_back.png");
+                "card_back.png");
 
 
         ImageStore.card_face_images = new HashMap<>();
@@ -35,8 +35,7 @@ public class ImageStore {
             for (int card_rank = 1;
                  card_rank < 14;
                  card_rank++) {
-                String image_file_name = "playing_cards_images/"
-                        + words_in_image_file_names[suit_index]
+                String image_file_name = words_in_image_file_names[suit_index]
                         + card_rank
                         + ".png";
 
