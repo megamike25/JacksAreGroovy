@@ -2,8 +2,27 @@ import javafx.scene.Group;
 
 public class Player {
 
-    private Group cards = new Group();
+    private Group cards;
     private int foldedCorners = 0;
 
+    public Player(int x, int y, double rotate, ){
+        cards = new Group();
+        cards.getChildren().clear();
 
+        for(int i = 0; i < 4; i++){
+            cards.getChildren().add(card);
+        }
+    }
+
+    public int getFoldedCorners(){
+        return foldedCorners;
+    }
+
+    public int foldCorner(){
+        return foldedCorners++;
+    }
+
+    public Group getCards(){
+        return cards;
+    }
 }

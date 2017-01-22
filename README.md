@@ -1,6 +1,6 @@
 Jacks Are Groovy
 
-Card, CardDeck, ImageStore and PlayingCardFX classes as well as card images
+Card, CardDeck and ImageStore classes as well as card images
 originated at http://www.naturalprogramming.com/javagui/javafx/.
 
 

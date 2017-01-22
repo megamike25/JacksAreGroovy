@@ -13,10 +13,9 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 
-public class PlayingCardsFX extends Application {
+public class JacksAreGroovy extends Application {
     CardDeck card_deck;
 
     // A StackPane will be the root pane for all visible things on the screen.
