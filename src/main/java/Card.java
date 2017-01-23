@@ -7,6 +7,8 @@ public class Card extends ImageView {
 
     Image card_faceup_image;
 
+    ImageStoreWrapper isw = new ImageStoreWrapper();
+
     //  face-up   =  card suit and rank are visible
     //  face-down =  card suit and rank are not visible
 
@@ -33,16 +35,16 @@ public class Card extends ImageView {
         // image of the Ace of Spades is found.
 
         if (card_suit == HEARTS) {
-            card_faceup_image = ImageStore.card_face_images.get("hearts" + card_rank);
+            card_faceup_image = isw.getFaceImage("hearts" + card_rank);
         } else if (card_suit == DIAMONDS) {
-            card_faceup_image = ImageStore.card_face_images.get("diamonds" + card_rank);
+            card_faceup_image = isw.getFaceImage("diamonds" + card_rank);
         } else if (card_suit == SPADES) {
-            card_faceup_image = ImageStore.card_face_images.get("spades" + card_rank);
+            card_faceup_image = isw.getFaceImage("spades" + card_rank);
         } else if (card_suit == CLUBS) {
-            card_faceup_image = ImageStore.card_face_images.get("clubs" + card_rank);
+            card_faceup_image = isw.getFaceImage("clubs" + card_rank);
         }
 
-        setImage(ImageStore.card_back_image); // Initially the card is face-down
+        setImage(isw.getBackImage()); // Initially the card is face-down
     }
 
     public int get_rank() {
@@ -55,7 +57,7 @@ public class Card extends ImageView {
 
     public void turn_card() {
         if (getImage() == card_faceup_image) {
-            setImage(ImageStore.card_back_image);
+            setImage(isw.getBackImage());
         } else {
             setImage(card_faceup_image);
         }
@@ -66,7 +68,7 @@ public class Card extends ImageView {
     }
 
     public void turn_card_face_down() {
-        setImage(ImageStore.card_back_image);
+        setImage(isw.getBackImage());
     }
 
     public boolean card_is_face_up() {
