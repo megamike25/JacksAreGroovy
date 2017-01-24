@@ -11,6 +11,8 @@ public class Player {
         this.y = y;
         this.rotate = rotate;
 
+        hand = new Hand();
+
         for(int i = 0; i < cards.length; i++){
             hand.addCard(transformCardDisplay(cards[i], i));
         }
