@@ -131,18 +131,20 @@ public class JacksAreGroovy extends Application {
 
             playerCards.getChildren().clear();
 
-            for (int card_index = 0;
-                 card_index < 4;
-                 card_index++) {
-                Card new_card = card_deck.get_card();
-
-                double card_position_x = 625 + (Card.CARD_WIDTH + 20) * card_index;
-                double card_position_y = 700;
-
-                new_card.set_card_position(card_position_x, card_position_y);
-
-                playerCards.getChildren().add(new_card);
-            }
+            Player player1 = new PlayerFactory().createPlayer1(card_deck.get_card(), card_deck.get_card(), card_deck.get_card(), card_deck.get_card());
+            playerCards.getChildren().addAll(player1.getHand().getAllCards());
+//            for (int card_index = 0;
+//                 card_index < 4;
+//                 card_index++) {
+//                Card new_card = card_deck.get_card();
+//
+//                double card_position_x = 625 + (Card.CARD_WIDTH + 20) * card_index;
+//                double card_position_y = 700;
+//
+//                new_card.set_card_position(card_position_x, card_position_y);
+//
+//                playerCards.getChildren().add(new_card);
+//            }
 
             computer1Cards.getChildren().clear();
 
