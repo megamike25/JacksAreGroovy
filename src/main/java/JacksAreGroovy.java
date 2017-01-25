@@ -22,10 +22,10 @@ public class JacksAreGroovy extends Application {
 
     StackPane root_stack = new StackPane();
 
-    Group playerCards = new Group();
-    Group computer1Cards = new Group();
-    Group computer2Cards = new Group();
-    Group computer3Cards = new Group();
+    Group player1Cards = new Group();
+    Group player2Cards = new Group();
+    Group player3Cards = new Group();
+    Group player4Cards = new Group();
 
     Group drawCards = new Group();
     Group discardCards = new Group();
@@ -64,7 +64,7 @@ public class JacksAreGroovy extends Application {
         // management of the Card objects.
         main_group_for_cards.setManaged(false);
 
-        main_group_for_cards.getChildren().addAll(playerCards, computer1Cards, computer2Cards, computer3Cards,
+        main_group_for_cards.getChildren().addAll(player1Cards, player2Cards, player3Cards, player4Cards,
                 drawCards, discardCards);
 
         initial_instructions.setFont(new Font(24));
@@ -91,16 +91,12 @@ public class JacksAreGroovy extends Application {
             double clicked_point_y = event.getSceneY();
 
 
-            for (Node card_as_node : playerCards.getChildren()) {
+            for (Node card_as_node : player1Cards.getChildren()) {
                 Card card_in_row = (Card) card_as_node;
 
                 if (card_in_row.contains_point(clicked_point_x,
                         clicked_point_y)) {
                     card_in_row.turn_card();
-
-                    //  selected_card will point to the clicked card.
-                    //  In this program, however, selected_card is not
-                    //  used for any purpose.
 
                     selected_card = card_in_row;
                 }
@@ -110,6 +106,12 @@ public class JacksAreGroovy extends Application {
                     drawCard.contains_point(clicked_point_x,
                             clicked_point_y)) {
                 drawCard.turn_card();
+            }
+
+            if (discardCard != null &&
+                    discardCard.contains_point(clicked_point_x,
+                            clicked_point_y)) {
+                discardCard.turn_card();
             }
 
 
@@ -129,71 +131,25 @@ public class JacksAreGroovy extends Application {
 
             //  We'll first empty the list 'inside' the Group
 
-            playerCards.getChildren().clear();
+            player1Cards.getChildren().clear();
 
             Player player1 = new PlayerFactory().createPlayer1(card_deck.get_card(), card_deck.get_card(), card_deck.get_card(), card_deck.get_card());
-            playerCards.getChildren().addAll(player1.getHand().getAllCards());
-//            for (int card_index = 0;
-//                 card_index < 4;
-//                 card_index++) {
-//                Card new_card = card_deck.get_card();
-//
-//                double card_position_x = 625 + (Card.CARD_WIDTH + 20) * card_index;
-//                double card_position_y = 700;
-//
-//                new_card.set_card_position(card_position_x, card_position_y);
-//
-//                playerCards.getChildren().add(new_card);
-//            }
+            player1Cards.getChildren().addAll(player1.getHand().getAllCards());
 
-            computer1Cards.getChildren().clear();
+            player2Cards.getChildren().clear();
 
-            for (int card_index = 0;
-                 card_index < 4;
-                 card_index++) {
-                Card new_card = card_deck.get_card();
+            Player player2 = new PlayerFactory().createPlayer2(card_deck.get_card(), card_deck.get_card(), card_deck.get_card(), card_deck.get_card());
+            player2Cards.getChildren().addAll(player2.getHand().getAllCards());
 
-                double card_position_x = 300;
-                double card_position_y = 150 + (Card.CARD_WIDTH + 20) * card_index;
+            player3Cards.getChildren().clear();
 
-                new_card.setRotate(90);
-                new_card.set_card_position(card_position_x, card_position_y);
+            Player player3 = new PlayerFactory().createPlayer3(card_deck.get_card(), card_deck.get_card(), card_deck.get_card(), card_deck.get_card());
+            player3Cards.getChildren().addAll(player3.getHand().getAllCards());
 
-                computer1Cards.getChildren().add(new_card);
-            }
+            player4Cards.getChildren().clear();
 
-            computer2Cards.getChildren().clear();
-
-            for (int card_index = 0;
-                 card_index < 4;
-                 card_index++) {
-                Card new_card = card_deck.get_card();
-
-
-                double card_position_x = 625 + (Card.CARD_WIDTH + 20) * card_index;
-                double card_position_y = 50;
-
-                new_card.setRotate(180);
-                new_card.set_card_position(card_position_x, card_position_y);
-
-                computer2Cards.getChildren().add(new_card);
-            }
-
-            computer3Cards.getChildren().clear();
-
-            for (int card_index = 0;
-                 card_index < 4;
-                 card_index++) {
-                Card new_card = card_deck.get_card();
-
-                double card_position_x = 1450;
-                double card_position_y = 150 + (Card.CARD_WIDTH + 20) * card_index;
-
-                new_card.setRotate(270);
-                new_card.set_card_position(card_position_x, card_position_y);
-
-                computer3Cards.getChildren().add(new_card);
-            }
+            Player player4 = new PlayerFactory().createPlayer4(card_deck.get_card(), card_deck.get_card(), card_deck.get_card(), card_deck.get_card());
+            player4Cards.getChildren().addAll(player4.getHand().getAllCards());
 
             drawCard = card_deck.get_card();
             drawCard.set_card_position(750, 350);
@@ -206,8 +162,6 @@ public class JacksAreGroovy extends Application {
             discardCards.getChildren().add(discardCard);
             discardCard.turn_card();
         });
-
-
     }
 
     public static void main(String[] command_line_parameters) {
