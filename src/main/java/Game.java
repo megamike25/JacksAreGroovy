@@ -26,7 +26,26 @@ public final class Game {
     }
 
     public Card drawCard(){
-        if(deck.)
         return deck.get_card();
     }
+
+    public Card getDiscardCard(){
+        return discardCard;
+    }
+
+    public Hand getPlayerOneHand(){
+        return playerOne.getHand();
+    }
+
+    public Hand getPlayerTwoHand(){
+        return playerTwo.getHand();
+    }
+
+    public Hand getPlayerThreeHand(){
+        return playerThree.getHand();
+    }
+    public Hand getPlayerFourHand(){
+        return playerFour.getHand();
+    }
+
 }

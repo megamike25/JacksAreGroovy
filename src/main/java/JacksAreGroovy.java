@@ -16,7 +16,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class JacksAreGroovy extends Application {
-    CardDeck card_deck;
+    Game game = new Game();
 
     // A StackPane will be the root pane for all visible things on the screen.
 
@@ -35,13 +35,10 @@ public class JacksAreGroovy extends Application {
 
     Card selected_card;
 
-
     public void start(Stage stage) {
         stage.setTitle("JACKS ARE GROOVY!");
 
         ImageStore.loadImages();
-
-        card_deck = new CardDeck();
 
         Button button_to_deal_cards = new Button("START GAME");
 
@@ -113,8 +110,6 @@ public class JacksAreGroovy extends Application {
                             clicked_point_y)) {
                 discardCard.turn_card();
             }
-
-
         });
 
         button_to_deal_cards.setOnAction((ActionEvent event) ->
@@ -129,34 +124,24 @@ public class JacksAreGroovy extends Application {
                 initial_instructions = null;
             }
 
-            //  We'll first empty the list 'inside' the Group
-
             player1Cards.getChildren().clear();
-
-            Player player1 = new PlayerFactory().createPlayer1(card_deck.get_card(), card_deck.get_card(), card_deck.get_card(), card_deck.get_card());
-            player1Cards.getChildren().addAll(player1.getHand().getAllCards());
+            player1Cards.getChildren().addAll(game.getPlayerOneHand().getAllCards());
 
             player2Cards.getChildren().clear();
-
-            Player player2 = new PlayerFactory().createPlayer2(card_deck.get_card(), card_deck.get_card(), card_deck.get_card(), card_deck.get_card());
-            player2Cards.getChildren().addAll(player2.getHand().getAllCards());
+            player2Cards.getChildren().addAll(game.getPlayerTwoHand().getAllCards());
 
             player3Cards.getChildren().clear();
-
-            Player player3 = new PlayerFactory().createPlayer3(card_deck.get_card(), card_deck.get_card(), card_deck.get_card(), card_deck.get_card());
-            player3Cards.getChildren().addAll(player3.getHand().getAllCards());
+            player3Cards.getChildren().addAll(game.getPlayerThreeHand().getAllCards());
 
             player4Cards.getChildren().clear();
+            player4Cards.getChildren().addAll(game.getPlayerFourHand().getAllCards());
 
-            Player player4 = new PlayerFactory().createPlayer4(card_deck.get_card(), card_deck.get_card(), card_deck.get_card(), card_deck.get_card());
-            player4Cards.getChildren().addAll(player4.getHand().getAllCards());
-
-            drawCard = card_deck.get_card();
+            drawCard = game.drawCard();
             drawCard.set_card_position(750, 350);
             drawCards.getChildren().clear();
             drawCards.getChildren().add(drawCard);
 
-            discardCard = card_deck.get_card();
+            discardCard = game.getDiscardCard();
             discardCard.set_card_position(1000, 350);
             discardCards.getChildren().clear();
             discardCards.getChildren().add(discardCard);
